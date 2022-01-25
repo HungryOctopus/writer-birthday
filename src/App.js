@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import data from './writers-birthday.json';
+import data from './writers-array.json';
 import List from './List';
 
 function App() {
