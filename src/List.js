@@ -1,8 +1,16 @@
 import React from 'react';
 
 const List = ({ people }) => {
+  // compareDate = () => {
+  //   let today = new Date();
+  //   let anniversary = `${today.getDate()}/'${today.getMonth()}`;
+  //   console.log(anniversary);
+  // };
+  
+
   return (
     <>
+    
       {people.map((person) => {
         const { name, birthday } = person;
         return (
