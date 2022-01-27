@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import data from './writers-array.json';
+import data from './writers-birthday-array.json';
 import List from './List';
 
 function App() {
@@ -24,9 +24,6 @@ function App() {
   let writersBirthday = people.filter(
     (writer) => writer.birthday === `${day}/${months[month]}`
   );
-  console.log(writersBirthday);
-
-  //console.log(`${day}/${month}`);
 
   return (
     <main>
