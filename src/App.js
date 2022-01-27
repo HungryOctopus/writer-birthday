@@ -20,16 +20,22 @@ function App() {
     '11',
     '12'
   ];
-  console.log(month);
-  console.log(new Date());
+
+  let writersBirthday = people.filter(
+    (writer) => writer.birthday === `${day}/${months[month]}`
+  );
+  console.log(writersBirthday);
+
+  //console.log(`${day}/${month}`);
 
   return (
     <main>
       <section className="container">
         <h3>
-          Those {people.length} writers were born on the {day}/{months[month]}
+          Those {writersBirthday.length} writers were born on the {day}/
+          {months[month]}
         </h3>
-        <List people={people} />
+        <List people={writersBirthday} />
         <button onClick={() => setPeople([])}>clear all</button>
       </section>
     </main>
