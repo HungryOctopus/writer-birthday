@@ -4,7 +4,7 @@ import List from './List';
 
 function App() {
   const [people, setPeople] = useState(data);
-  let day = new Date().getDate();
+  let day = ('0' + new Date().getDate()).slice(-2); // to ensure there is a 0 before the 1 to 9 dates.
   let month = new Date().getMonth();
   const months = [
     '01',
