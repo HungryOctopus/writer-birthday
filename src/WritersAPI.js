@@ -1,50 +1,22 @@
-const cheerio = require('cheerio');
-const axios = require('axios');
-const fs = require('fs');
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-// URL of the page we want to scrape
-const url = 'https://www.writerswrite.co.za/literary-birthday-calendar/';
+const baseURL = 'https://openlibrary.org/search/authors.json?q=j%20k%20rowling';
 
-//Async function which scrapes the data
+export default function WritersApi() {
+  const [post, setPost] = useState(null);
 
-async function scrapeData() {
-  try {
-    //Fetch HTML of the page we want to scrape
-
-    const { data } = await axios.get(url);
-    // Loads all the HTML of the page we fetched in the previous line
-    const $ = cheerio.load(data);
-
-    //Select all the list of writers
-    const listWriters = $('li, p');
-    //Store data for all writers
-    const writers = [];
-    //Use each method to loop through the li we selected
-    listWriters.each((idx, el) => {
-      const writer = { name: this.name, birthday: this.birthday };
-      writer.name = $(el).children('a').text();
-      writer.birthday = $(el).children('strong').text(); // find a solution here!
-
-      //Populate writers array with data
-      writers.push(writer);
+  React.useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      setPost(response.data);
     });
-    // Logs countries array to the console
-    console.log(writers);
-    // Write countries array in countries.json file
-    fs.writeFile(
-      'writers-birthday.json',
-      JSON.stringify(writers, null, 2),
-      (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        console.log('Successfully written data to file');
-      }
-    );
-  } catch (err) {
-    console.error(err);
-  }
-}
+  }, []);
 
-scrapeData();
+  if (!post) return null;
+
+  return (
+    <div>
+      <h1>{post.docs}</h1>
+    </div>
+  );
+}
