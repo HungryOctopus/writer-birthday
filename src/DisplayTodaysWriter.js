@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import data from './writers-birthday-array.json';
 import List from './List';
+//import FindDate from './FindDate';
 
 function TodaysWriter() {
- const [people, setPeople] = useState(data);
+  const [people, setPeople] = useState(data);
   let day = ('0' + new Date().getDate()).slice(-2); // to ensure there is a 0 before the 1 to 9 dates.
   let month = new Date().getMonth();
   const months = [
@@ -33,7 +34,10 @@ function TodaysWriter() {
           {months[month]}
         </h3>
         <List people={writersBirthday} />
-      {/* <button onClick={() => setPeople([])}>clear all</button> */}
+        {/* <button onClick={() => console.log('click')}>
+          Set another date
+        </button>{' '} */}
+        {/* How to activate the property isVisible on findDate from here? */}
       </section>
     </main>
   );
