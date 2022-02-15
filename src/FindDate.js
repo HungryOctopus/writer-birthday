@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
+//import DisplayTodaysWriter from './DisplayTodaysWriter';
 import data from './writers-birthday-array.json';
+import List from './List';
+//import { options } from 'request';
 
 const months = [
   { label: 'January', value: '01' },
@@ -19,50 +22,50 @@ const months = [
 
 let days = [];
 for (let i = 1; i <= 31; i++) {
-  days.push({ label: i, value: i });
-  console.log(days);
+  days.push({ label: ('0' + i).slice(-2), value: ('0' + i).slice(-2) });
 }
 
-const people = data;
+function FindDate() {
+  const [selectedDay, setSelectedDay] = useState();
+  const [selectedMonth, setSelectedMonth] = useState();
+  // Better with useEffect?
 
-class FindDate extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      day: '',
-      month: '',
-      isVisible: false
-    };
+  let handleChangeM = (selectedOptionM) => {
+    setSelectedMonth({ selectedOptionM });
+    console.log(selectedMonth);
+  };
 
-    // Add conditional rendering.
-    // FindDate is set to false, when pressing on the button the field appears
+  let handleChangeD = (selectedOptionD) => {
+    setSelectedDay({ selectedOptionD });
+    console.log(selectedDay);
+  };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
+  const [people, setPeople] = useState(data);
+  
+  let writersBirthday = async () =>
+    await (handleChangeD && handleChangeM).then(
+      people.filter(
+        (writer) =>
+          writer.birthday === `${selectedDay.value}/${selectedMonth.value}`
+      )
+    );
 
-  handleInputChange(event) {
-    const target = event.target;
-  }
+  return (
+    <section>
+      <form>
+        <Select options={days} value={selectedDay} onChange={handleChangeD} />
 
-  render() {
-    if (this.state.isVisible) {
-      return (
-        <section className="container">
-          <h3>Choose a date</h3>
-          <div>
-            <Select options={days} />
-            <Select options={months} />
-          </div>
-          <button onClick={() => this.setState({ day: days, month: months })}>
-            {/* To correct: Here it should only be the selected day in the state  */}
-            View writer's birthdays
-          </button>
-        </section>
-      );
-    } else {
-      return <></>;
-    }
-  }
+        <Select
+          options={months}
+          value={selectedMonth}
+          onChange={handleChangeM}
+        />
+      </form>
+      {/* 
+      <List people={writersBirthday} /> */}
+      {console.log(writersBirthday)}
+    </section>
+  );
 }
 
 export default FindDate;
