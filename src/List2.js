@@ -1,9 +1,10 @@
 import React from 'react';
+import FindDate from './FindDate';
 
-const List = ({ people }) => {
+const List2 = ({writers}) => {
   return (
     <>
-      {people.map((person) => {
+      {writers.map((person) => {
         const { name } = person;
         return (
           <article key={name} className="person">
@@ -18,4 +19,4 @@ const List = ({ people }) => {
   );
 };
 
-export default List;
+export default List2;

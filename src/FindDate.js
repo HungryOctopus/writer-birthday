@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-//import DisplayTodaysWriter from './DisplayTodaysWriter';
+import DisplayTodaysWriter from './DisplayTodaysWriter';
 import data from './writers-birthday-array.json';
 import List from './List';
+import List2 from './List2';
 //import { options } from 'request';
 
 const months = [
@@ -26,44 +27,48 @@ for (let i = 1; i <= 31; i++) {
 }
 
 function FindDate() {
-  const [selectedDay, setSelectedDay] = useState();
-  const [selectedMonth, setSelectedMonth] = useState();
-  // Better with useEffect?
+  const [selectedDay, setSelectedDay] = useState(days);
+  const [selectedMonth, setSelectedMonth] = useState(months);
+  const [writers, setWriters] = useState(data);
+  const [showResult, setShowResult] = useState(false);
 
-  let handleChangeM = (selectedOptionM) => {
-    setSelectedMonth({ selectedOptionM });
-    console.log(selectedMonth);
+  let handleChangeM = (selectedMonth) => {
+    setSelectedMonth(selectedMonth.value);
+    console.log(selectedMonth.value);
   };
 
-  let handleChangeD = (selectedOptionD) => {
-    setSelectedDay({ selectedOptionD });
-    console.log(selectedDay);
+  let handleChangeD = (selectedDay) => {
+    setSelectedDay(selectedDay.value);
+    console.log(selectedDay.value);
   };
 
-  const [people, setPeople] = useState(data);
-  
-  let writersBirthday = async () =>
-    await (handleChangeD && handleChangeM).then(
-      people.filter(
-        (writer) =>
-          writer.birthday === `${selectedDay.value}/${selectedMonth.value}`
-      )
-    );
+  // useEffect(() => {
+  //   if (handleChangeD && handleChangeM) {
+  //     let selectedDate = `${setSelectedDay}/${setSelectedMonth}`;
+  //     let newWritersBirthday = writers.filter(
+  //       (writer) => writer.birthday === selectedDate
+  //     );
+  //     console.log(selectedDate);
+  //   }
+  // });
 
   return (
     <section>
       <form>
-        <Select options={days} value={selectedDay} onChange={handleChangeD} />
+        <Select
+          options={days}
+          //value={selectedDay}
+          onChange={handleChangeD}
+        />
 
         <Select
           options={months}
-          value={selectedMonth}
+          //value={selectedMonth}
           onChange={handleChangeM}
         />
       </form>
-      {/* 
-      <List people={writersBirthday} /> */}
-      {console.log(writersBirthday)}
+      <button onClick={() => setShowResult(true)}>Show result</button>
+      {/* {showResult ? <List2 writers={newWritersBirthday} /> : <></>} */}
     </section>
   );
 }

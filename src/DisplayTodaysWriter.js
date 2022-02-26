@@ -38,7 +38,6 @@ function TodaysWriter() {
         {/* <button onClick={() => setShowDate(!showDate)}>Choose another date</button>
 
         {showDate ? <FindDate /> : <></>} */}
-
       </section>
     </main>
   );
