@@ -27,18 +27,18 @@ for (let i = 1; i <= 31; i++) {
 }
 
 function FindDate() {
-  const [selectedDay, setSelectedDay] = useState(days);
-  const [selectedMonth, setSelectedMonth] = useState(months);
+  const [day, setDay] = useState([]);
+  const [month, setMonth] = useState('');
   const [writers, setWriters] = useState(data);
   const [showResult, setShowResult] = useState(false);
 
   let handleChangeM = (selectedMonth) => {
-    setSelectedMonth(selectedMonth.value);
+    setMonth(selectedMonth.value);
     console.log(selectedMonth.value);
   };
 
-  let handleChangeD = (selectedDay) => {
-    setSelectedDay(selectedDay.value);
+  const handleChangeD = (selectedDay) => {
+    setDay(selectedDay.value);
     console.log(selectedDay.value);
   };
 
@@ -52,22 +52,34 @@ function FindDate() {
   //   }
   // });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(setDay + ' / ' + setMonth);
+    setShowResult(true);
+  };
+
   return (
     <section>
-      <form>
-        <Select
-          options={days}
-          //value={selectedDay}
-          onChange={handleChangeD}
-        />
+      <form onSubmit={handleSubmit}>
+        <label>
+          <Select
+            placeholder="Select a day"
+            options={days}
+            value={day}
+            onChange={handleChangeD}
+          />
+        </label>
 
         <Select
+          placeholder="Select a month"
           options={months}
-          //value={selectedMonth}
+          value={month}
           onChange={handleChangeM}
         />
       </form>
-      <button onClick={() => setShowResult(true)}>Show result</button>
+      <button type="submit" onClick={handleSubmit}>
+        Show result
+      </button>
       {/* {showResult ? <List2 writers={newWritersBirthday} /> : <></>} */}
     </section>
   );
