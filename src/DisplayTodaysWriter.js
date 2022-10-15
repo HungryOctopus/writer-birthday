@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import data from './writers-birthday-array.json';
 import List from './List';
-import FindDate from './FindDate';
+import FindDate from './FindDate-archive';
 
 function TodaysWriter() {
   const [people, setPeople] = useState(data);

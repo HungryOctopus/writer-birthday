@@ -1,7 +1,7 @@
 import React from 'react';
-import FindDate from './FindDate';
+import FindDate from './FindDate-archive';
 
-const List2 = ({writers}) => {
+const List2 = ({ writers }) => {
   return (
     <>
       {writers.map((person) => {
