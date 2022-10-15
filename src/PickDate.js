@@ -5,16 +5,26 @@ import data from './writers-birthday-array.json';
 import List from './List';
 
 function PickDate() {
+  //selected: the value given by DayPicker when a date is selected
   const [selected, setSelected] = useState();
-  const [matchingBDay, setMatchingBDay] = useState(data);
-  let footer = <p>When is your birthday ?</p>;
+  const [matchDate, setMatchDate] = useState(data);
+  const [listWriter, setListWriter] = useState();
+
   if (selected) {
-    footer = <p>You picked {format(selected, 'PP')}.</p>;
+    let formattedDate =
+      ('0' + selected.getDate()).slice(-2) + `/` + (selected.getMonth() + 1);
+
+    setListWriter(
+      matchDate.filter((writer) => writer.birthday === formattedDate)
+    );
+
+    //setSelected('');
+
+   // console.log(matchDate);
+    console.log(formattedDate);
+    console.log(listWriter);
   }
 
-  let Match = matchingBDay.filter((writer) => writer.birthday === `$selected`);
-  console.log(Match);
-  console.log(selected);
   return (
     <main>
       <section className="container">
@@ -24,10 +34,13 @@ function PickDate() {
             mode="single"
             selected={selected}
             onSelect={setSelected}
-            footer={footer}
+            //footer={footer}
           />
         </div>
-        {selected ? <List matchingBDay={Match} /> : <div></div>}
+        {/* {selected ? <p>Date is selected</p> : <div></div>} */}
+        {/* {selected ? <List people={listWriter} /> : <div></div>} */}
+
+        {selected ? <div> {listWriter} </div> : <div></div>}
       </section>
     </main>
   );
