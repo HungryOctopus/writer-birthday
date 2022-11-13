@@ -8,20 +8,22 @@ function PickDate() {
   //selected: the value given by DayPicker when a date is selected
   const [selected, setSelected] = useState();
   const [matchDate, setMatchDate] = useState(data);
-  const [listWriter, setListWriter] = useState([]);
+  let formattedDate = 0;
+  let listedWriter = '';
 
   if (selected) {
-    let formattedDate =
+    formattedDate =
       ('0' + selected.getDate()).slice(-2) + `/` + (selected.getMonth() + 1);
+  }
+  //console.log(formattedDate);
 
-    const listWriter = matchDate.filter(
+  if (formattedDate != 0) {
+    listedWriter = matchDate.filter(
       (writer) => writer.birthday === formattedDate
     );
-
-    // console.log(matchDate);
-    console.log(formattedDate);
-    console.log(listWriter);
   }
+
+  //console.log(listedWriter);
 
   return (
     <main>
@@ -36,10 +38,12 @@ function PickDate() {
             //footer={footer}
           />
         </div>
-        {/* {selected ? <p>Date is selected</p> : <div></div>} */}
-        {/* {selected ? <List people={listWriter} /> : <div></div>} */}
 
-        {listWriter ? <div> {listWriter} </div> : <div></div>}
+        {selected ? (
+          <List people={listedWriter} />
+        ) : (
+          <div>Please pick a date</div>
+        )}
       </section>
     </main>
   );
