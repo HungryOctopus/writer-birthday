@@ -13,17 +13,20 @@ function PickDate() {
 
   if (selected) {
     formattedDate =
-      ('0' + selected.getDate()).slice(-2) + `/` + (selected.getMonth() + 1);
+      ('0' + selected.getDate()).slice(-2) +
+      `/` +
+      ('0' + (selected.getMonth() + 1)).slice(-2);
   }
   //console.log(formattedDate);
 
-  if (formattedDate != 0) {
+  if (formattedDate !== 0) {
     listedWriter = matchDate.filter(
       (writer) => writer.birthday === formattedDate
     );
   }
-
-  //console.log(listedWriter);
+  console.log(selected);
+  console.log(formattedDate);
+  console.log(listedWriter);
 
   return (
     <main>
