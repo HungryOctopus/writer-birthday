@@ -1,14 +1,12 @@
 import React from 'react';
 import DisplayTodaysWriter from './DisplayTodaysWriter';
-//import PickDate from './PickDate';
+import './index.css';
 
 function App() {
   return (
-    <div>
+    <main>
       <DisplayTodaysWriter />
-      {/* <PickDate /> */}
-      {/* <WritersApi /> */}
-    </div>
+    </main>
   );
 }
 export default App;

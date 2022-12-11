@@ -73,14 +73,17 @@ a {
 }
 h1,
 h2,
-h3,
+h3 {
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
 h4 {
   letter-spacing: var(--spacing);
   text-transform: capitalize;
   line-height: 1.25;
   margin-bottom: 0.75rem;
 }
-h1 {
+/* h1 {
   font-size: 3rem;
 }
 h2 {
@@ -95,7 +98,7 @@ h4 {
 p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
-}
+} */
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 4rem;
@@ -104,23 +107,29 @@ p {
     font-size: 2.5rem;
   }
   h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
   }
   h4 {
     font-size: 1rem;
-  }
-  body {
-    font-size: 1rem;
-  }
-  h1,
-  h2,
-  h3,
-  h4 {
-    line-height: 1;
+    line-height: 2;
   }
 }
 /*  global classes */
+.daypicker {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: var(--dark-blue);
+  --rdp-background-color: #e7edff;
+  /* Outline border for focused elements */
+  --rdp-outline: 2px solid var(--rdp-accent-color);
+  /* Outline border for focused and selected elements */
+  --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
+}
 
+.rdp-months {
+  padding: 0;
+  margin: 0;
+}
 /* section */
 .section {
   width: 90vw;
@@ -137,6 +146,7 @@ p {
 main {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -173,15 +183,16 @@ button {
   box-shadow: var(--dark-shadow);
 }
 
-.containerpd {
+.daypicker {
+  width: 90vw;
   margin: 10;
   max-width: var(--fixed-width);
   background: var(--clr-white);
   border-radius: var(--radius);
-  padding: 1.5rem 2rem;
+  padding: 1.5rem;
   box-shadow: var(--dark-shadow);
 }
-
+/* 
 .person {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -201,4 +212,4 @@ button {
 }
 .person p {
   margin-bottom: 0;
-}
+} */

@@ -4,7 +4,7 @@ import List from './List';
 import PickDate from './PickDate';
 
 function TodaysWriter() {
-  const [people, setPeople] = useState(data);
+  const [people] = useState(data);
   const [showPickDate, setShowPickDate] = useState(false);
   //const [button, showButton] = useState(true);
   let day = ('0' + new Date().getDate()).slice(-2); // to ensure there is a 0 before the 1 to 9 dates.
@@ -29,24 +29,24 @@ function TodaysWriter() {
   );
 
   return (
-    <main>
-      <section className="container">
-        <h3>
-          Those {writersBirthday.length} writers were born today, the {day}/
-          {months[month]}
-        </h3>
-        <List people={writersBirthday} />
-      </section>
+    <>
       {showPickDate ? (
         <PickDate />
       ) : (
-        <section className="containerpd">
-          <button onClick={() => setShowPickDate(!showPickDate)}>
-            Choose another date
-          </button>
-        </section>
+        <>
+          <section className="container">
+            <h3>
+              Those {writersBirthday.length} writers were born today, the {day}/
+              {months[month]}
+            </h3>
+            <List people={writersBirthday} />
+            <button onClick={() => setShowPickDate(!showPickDate)}>
+              Choose another date
+            </button>
+          </section>
+        </>
       )}
-    </main>
+    </>
   );
 }
 

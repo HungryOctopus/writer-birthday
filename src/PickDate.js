@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
-import { format } from 'date-fns';
+import 'react-day-picker/dist/style.css';
 import data from './writers-birthday-array.json';
 import List from './List';
 
@@ -28,8 +28,8 @@ function PickDate() {
   console.log(listedWriter); */
 
   return (
-    <section className="containerpd">
-      <div>
+    <main>
+      <div className="daypicker">
         <h3>Pick a date</h3>
         <DayPicker
           mode="single"
@@ -39,19 +39,20 @@ function PickDate() {
           //footer={footer}
         />
       </div>
-      <div>
-        {selected ? (
-          <>
+
+      {selected ? (
+        <>
+          <section className="container">
             <h3>
               Those {listedWriter.length} writers were born the {formattedDate}
             </h3>
             <List people={listedWriter} />
-          </>
-        ) : (
-          <div>Please pick a date</div>
-        )}
-      </div>
-    </section>
+          </section>
+        </>
+      ) : (
+        <></>
+      )}
+    </main>
   );
 }
 
