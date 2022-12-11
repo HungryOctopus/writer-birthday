@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import data from './writers-birthday-array.json';
 import List from './List';
+import PickDate from './PickDate';
 
 function TodaysWriter() {
   const [people, setPeople] = useState(data);
-  const [showDate, setShowDate] = useState(false);
+  const [showPickDate, setShowPickDate] = useState(false);
+  //const [button, showButton] = useState(true);
   let day = ('0' + new Date().getDate()).slice(-2); // to ensure there is a 0 before the 1 to 9 dates.
   let month = new Date().getMonth();
   const months = [
@@ -34,10 +36,16 @@ function TodaysWriter() {
           {months[month]}
         </h3>
         <List people={writersBirthday} />
-        {/* <button onClick={() => setShowDate(!showDate)}>Choose another date</button>
-
-        {showDate ? <FindDate /> : <></>} */}
       </section>
+      {showPickDate ? (
+        <PickDate />
+      ) : (
+        <section className="containerpd">
+          <button onClick={() => setShowPickDate(!showPickDate)}>
+            Choose another date
+          </button>
+        </section>
+      )}
     </main>
   );
 }

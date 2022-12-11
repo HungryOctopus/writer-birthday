@@ -7,7 +7,7 @@ import List from './List';
 function PickDate() {
   //selected: the value given by DayPicker when a date is selected
   const [selected, setSelected] = useState();
-  const [matchDate, setMatchDate] = useState(data);
+  const [matchDate] = useState(data);
   let formattedDate = 0;
   let listedWriter = '';
 
@@ -17,38 +17,41 @@ function PickDate() {
       `/` +
       ('0' + (selected.getMonth() + 1)).slice(-2);
   }
-  //console.log(formattedDate);
 
   if (formattedDate !== 0) {
     listedWriter = matchDate.filter(
       (writer) => writer.birthday === formattedDate
     );
   }
-  console.log(selected);
+  /*   console.log(selected);
   console.log(formattedDate);
-  console.log(listedWriter);
+  console.log(listedWriter); */
 
   return (
-    <main>
-      <section className="container">
-        <div>
-          <h3>Pick a date</h3>
-          <DayPicker
-            mode="single"
-            selected={selected}
-            // onChange={(date) => setSelected(date)}
-            onSelect={setSelected}
-            //footer={footer}
-          />
-        </div>
-
+    <section className="containerpd">
+      <div>
+        <h3>Pick a date</h3>
+        <DayPicker
+          mode="single"
+          selected={selected}
+          // onChange={(date) => setSelected(date)}
+          onSelect={setSelected}
+          //footer={footer}
+        />
+      </div>
+      <div>
         {selected ? (
-          <List people={listedWriter} />
+          <>
+            <h3>
+              Those {listedWriter.length} writers were born the {formattedDate}
+            </h3>
+            <List people={listedWriter} />
+          </>
         ) : (
           <div>Please pick a date</div>
         )}
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
 

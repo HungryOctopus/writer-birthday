@@ -1,12 +1,12 @@
 import React from 'react';
 import DisplayTodaysWriter from './DisplayTodaysWriter';
-import PickDate from './PickDate';
+//import PickDate from './PickDate';
 
 function App() {
   return (
     <div>
       <DisplayTodaysWriter />
-      <PickDate />
+      {/* <PickDate /> */}
       {/* <WritersApi /> */}
     </div>
   );
